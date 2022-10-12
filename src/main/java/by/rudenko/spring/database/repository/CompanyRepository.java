@@ -4,6 +4,7 @@ import by.rudenko.spring.bpp.InjectBean.Auditing;
 import by.rudenko.spring.bpp.InjectBean.Transaction;
 import by.rudenko.spring.database.entity.Company;
 import by.rudenko.spring.database.pool.ConnectionPool;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
@@ -22,10 +23,10 @@ public class CompanyRepository implements CrudRepository<Integer, Company>{
     private final List<ConnectionPool> pools;
     private final Integer poolSize;
 
-    public CompanyRepository(ConnectionPool connectionPool,
+    public CompanyRepository(ConnectionPool pool1,
                              List<ConnectionPool> pools,
                              @Value("${db.pool.size}") Integer poolSize) {
-        this.connectionPool = connectionPool;
+        this.connectionPool = pool1;
         this.pools = pools;
         this.poolSize = poolSize;
     }
