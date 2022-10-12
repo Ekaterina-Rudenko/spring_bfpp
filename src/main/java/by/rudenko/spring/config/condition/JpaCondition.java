@@ -9,8 +9,8 @@ public class JpaCondition implements Condition {
     @Override
     public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
         try {
-            context.getClassLoader().loadClass("org.postgesql.Driver");
-            return false;
+            context.getClassLoader().loadClass("org.postgresql.Driver");
+            return true;
         } catch (ClassNotFoundException e) {
             return false;
         }

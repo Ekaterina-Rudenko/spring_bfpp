@@ -4,6 +4,7 @@ import by.rudenko.spring.bpp.InjectBean.Auditing;
 import by.rudenko.spring.bpp.InjectBean.Transaction;
 import by.rudenko.spring.database.entity.Company;
 import by.rudenko.spring.database.pool.ConnectionPool;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -14,23 +15,17 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Optional;
+@Repository
 @Transaction
 @Auditing
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
+@RequiredArgsConstructor
 public class CompanyRepository implements CrudRepository<Integer, Company>{
 
-    private final ConnectionPool connectionPool;
+    private final ConnectionPool pool1;
     private final List<ConnectionPool> pools;
+    @Value("${db.pool.size}")
     private final Integer poolSize;
-
-    public CompanyRepository(ConnectionPool pool1,
-                             List<ConnectionPool> pools,
-                             @Value("${db.pool.size}") Integer poolSize) {
-        this.connectionPool = pool1;
-        this.pools = pools;
-        this.poolSize = poolSize;
-    }
-
     @PostConstruct
     private void init(){
         System.out.println("Init company repository");

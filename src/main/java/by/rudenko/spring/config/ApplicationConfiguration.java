@@ -11,15 +11,7 @@ import org.springframework.context.annotation.ComponentScan.*;
 import org.springframework.stereotype.Component;
 
 @Import(WebConfig.class)
-@Configuration
-@PropertySource("classpath:application.properties")
-@ComponentScan(basePackages = "by.rudenko.spring",
-        useDefaultFilters = false,
-        includeFilters = {
-                @Filter(type = FilterType.ANNOTATION, value = Component.class),
-                @Filter(type = FilterType.ASSIGNABLE_TYPE, value = CrudRepository.class),
-                @Filter(type = FilterType.REGEX, pattern = "com\\..+Repository")
-        })
+@Configuration(proxyBeanMethods = true)
 public class ApplicationConfiguration {
 
         @Bean("pool2")
@@ -33,7 +25,7 @@ public class ApplicationConfiguration {
         }
 
         @Bean
-        @Profile("prod")
+        @Profile("prod|web")
         public UserRepository userRepository2(ConnectionPool pool2){
                 return new UserRepository(pool2);
         }
