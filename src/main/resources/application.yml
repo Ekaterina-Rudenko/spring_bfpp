@@ -19,3 +19,12 @@ db:
     - size: 3
       timeout: 3
 spring.profiles.active: qa
+
+logging:
+  level:
+    root: WARN
+    by.rudenko.spring.database.pool.ConnectionPool: INFO
+  file:
+    name: rudenko.log
+    path: /
+
