@@ -1,7 +1,6 @@
 package by.rudenko.spring.config;
 
 import by.rudenko.spring.database.pool.ConnectionPool;
-import by.rudenko.spring.database.repository.UserRepository;
 import by.rudenko.web.config.WebConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -19,18 +18,5 @@ public class ApplicationConfiguration {
         @Bean
         public ConnectionPool pool3(){
                 return new ConnectionPool("test-pool", 25);
-        }
-
-        @Bean
-        @Profile("prod|web")
-        public UserRepository userRepository2(ConnectionPool pool2){
-                return new UserRepository(pool2);
-        }
-        @Bean
-        public UserRepository userRepository3(){
-                var connectionPool = pool3();
-                var connectionPool2 = pool3();
-                var connectionPool3 = pool3();
-                return new UserRepository(pool3());
         }
 }
