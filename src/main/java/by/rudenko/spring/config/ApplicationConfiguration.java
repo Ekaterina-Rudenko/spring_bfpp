@@ -1,14 +1,11 @@
 package by.rudenko.spring.config;
 
 import by.rudenko.spring.database.pool.ConnectionPool;
-import by.rudenko.spring.database.repository.CrudRepository;
 import by.rudenko.spring.database.repository.UserRepository;
 import by.rudenko.web.config.WebConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.*;
-import org.springframework.context.annotation.ComponentScan.*;
-import org.springframework.stereotype.Component;
 
 @Import(WebConfig.class)
 @Configuration(proxyBeanMethods = true)

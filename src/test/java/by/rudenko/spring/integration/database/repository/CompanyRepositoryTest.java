@@ -1,6 +1,7 @@
 package by.rudenko.spring.integration.database.repository;
 
 import by.rudenko.spring.database.entity.Company;
+import by.rudenko.spring.database.repository.CompanyRepository;
 import by.rudenko.spring.integration.annotation.IT;
 import lombok.RequiredArgsConstructor;
 import org.assertj.core.api.Assertions;
@@ -14,14 +15,24 @@ import javax.persistence.EntityManager;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @IT
 @RequiredArgsConstructor
-/*@Transactional
-@Commit*/
 class CompanyRepositoryTest {
+    private static final Integer APPLE_ID = 4;
     private final EntityManager entityManager;
     private final TransactionTemplate transactionTemplate;
+    private final CompanyRepository companyRepository;
+
+    @Test
+    void delete() {
+        var mayBeCompany = companyRepository.findById(APPLE_ID);
+        assertTrue(mayBeCompany.isPresent());
+        mayBeCompany.ifPresent(companyRepository::delete);
+        entityManager.flush();
+        assertTrue(companyRepository.findById(APPLE_ID).isEmpty());
+    }
 
     @Test
     void findById() {
