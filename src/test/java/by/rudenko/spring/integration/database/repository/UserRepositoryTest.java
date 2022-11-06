@@ -3,6 +3,7 @@ package by.rudenko.spring.integration.database.repository;
 import by.rudenko.spring.database.entity.Role;
 import by.rudenko.spring.database.entity.User;
 import by.rudenko.spring.database.repository.UserRepository;
+import by.rudenko.spring.dto.UserFilter;
 import by.rudenko.spring.integration.annotation.IT;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserRepositoryTest {
 
     private final UserRepository userRepository;
+
+    @Test
+void checkCustomImplementation(){
+        UserFilter filter = new UserFilter(
+                null, "%ov%", LocalDate.now()
+        );
+        var users = userRepository.findAllByFilter(filter);
+        System.out.println(users);
+    }
 
     @Test
     void checkProjections() {
