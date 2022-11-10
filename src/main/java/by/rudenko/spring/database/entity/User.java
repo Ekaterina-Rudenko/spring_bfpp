@@ -1,9 +1,7 @@
 package by.rudenko.spring.database.entity;
 
 import lombok.*;
-import org.hibernate.envers.Audited;
 import org.hibernate.envers.NotAudited;
-import org.hibernate.envers.RelationTargetAuditMode;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -21,7 +19,6 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "users")
-@Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
 public class User extends AuditingEntity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

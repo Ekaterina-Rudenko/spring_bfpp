@@ -1,6 +1,7 @@
 db:
   username: test
   password: test
+
 spring:
   jpa:
     properties.hibernate:

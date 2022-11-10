@@ -20,6 +20,6 @@ public class JpaConfiguration {
     }*/
     @PostConstruct
     void init(){
-        log.info("Jpa configurational is a=enabled");
+        log.info("Jpa configuration is enabled");
     }
 }
