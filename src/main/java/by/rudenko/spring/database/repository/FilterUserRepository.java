@@ -12,4 +12,8 @@ public interface FilterUserRepository {
 
     //to get dto. JDBC doesnt use hibrnate and it persist context
     List<PersonalInfo> findAllByCompanyIdAndRole(Integer companyId, Role role);
+
+    void updateCompanyAndRole(List <User> users);
+    void updateCompanyAndRoleName(List <User> users);
+
 }
