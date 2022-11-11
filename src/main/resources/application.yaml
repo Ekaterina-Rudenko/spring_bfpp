@@ -36,6 +36,7 @@ logging:
   level:
     root: INFO
     by.rudenko.spring.database.pool.ConnectionPool: INFO
+    org:springframework:jdbc:core: TRACE
   file:
     name: rudenko.log
     path: /
